@@ -21,3 +21,32 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about', { title: "about" })
 })
+
+
+app.get('/add', (req, res) => {
+    const note = new Note({
+        title: "Excos Metting", author: "Me", body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dignissimos est dolore corrupti deserunt delectus similique quae iusto, voluptates accusantium?"
+    })
+
+    note.save().then(result => {
+        res.send(result)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+app.get('/get-all', (req, res) =>  {
+    Note.find().then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+app.get('/single', (req, res) => {
+    Note.findById('64ad7455c49d0119babecf18').then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
