@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/header.ejs') %>
+<body>
+
+<% name = "John" %>
+        <%- include('./dashpartials/nav.ejs') %>
+    <div class="container my-4">
+
+        <div class="display-4 my-4">Welcome to your notes <%= name %>! </div>
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                      <h5>Pinned notes</h5>
+                    </div>y
+                  </div>
+            </div>
+<br />
+            <div class="col-md-8">
+                <div class="card container p-4">
+                      <div class="card-title">
+                      <h5>All notes</h5>
+                        
+                      </div>
+                    <div class="card-body row text-white">
+                      
+                        <div class="col-md-5 note p-2 m-2">
+                            <div class="lead">notes from service Church</div>
+                        </div>
+                        <div class="col-md-5 note p- m-2">
+                            <div class="lead">notes from service Church</div>
+                        </div>
+                        <div class="col-md-5 note p-2 m-2">
+                            <div class="lead">notes from service Church</div>
+                        </div>
+                       
+
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+<!-- <%- include('./dashpartials/footer.ejs') %> -->
+</body>
+</html>

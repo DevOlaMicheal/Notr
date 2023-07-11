@@ -1,7 +1,3 @@
-body{
-    background-color: rgb(221, 214, 214);
-   
-}
 
 #headlink{
     color: rgb(54, 53, 53);
@@ -77,4 +73,9 @@ body{
   }
   .bd-mode-toggle {
     z-index: 1500;
+  }
+  .note{
+    border: 0x solid #5a23c8;
+    border-radius: 5px;
+    background-color: #5a23c8;
   }

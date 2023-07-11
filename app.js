@@ -15,7 +15,7 @@ app.use(express.static("public"))
 app.use(express.static("node_modules"))
 
 app.get('/', (req, res) => {
-    res.render('index', { title: "notr" })
+    res.render('dashboard/dashboard', { title: "notr" })
 
 })
 app.get('/about', (req, res) => {
