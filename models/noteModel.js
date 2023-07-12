@@ -14,6 +14,10 @@ const notesSchema = new Schema({
         type: String,
         required: true
     },
+    pin: {
+        type: Boolean,
+        required: true
+    },
 }, { timestamps: true })
 
 const Note = mongoose.model('Note', notesSchema);

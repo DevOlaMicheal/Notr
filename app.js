@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv').config()
-const Note = require('./models/noteModel')
 const mongoose = require('mongoose')
 
 
