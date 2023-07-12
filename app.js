@@ -3,7 +3,6 @@ const app = express()
 const dotenv = require('dotenv').config()
 const mongoose = require('mongoose')
 
-
 mongoose.connect(process.env.MONGO_URI).then((result) => {
     app.listen(process.env.PORT, () => console.log(`app running on port ${process.env.PORT}`))
 }).catch(err => console.log(err))

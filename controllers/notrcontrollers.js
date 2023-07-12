@@ -1,3 +1,4 @@
+const Note = require('../models/noteModel')
 
 const allnotes = (req, res) => {
     Note.find().then((result) => {
@@ -5,5 +6,10 @@ const allnotes = (req, res) => {
     }).catch((err) => {
         console.log(err)
     })
+}
+
+
+modules.exports = {
+    allnotes
 }
 
