@@ -3,17 +3,17 @@
 <%- include('../partials/header.ejs') %>
 <body>
 
-<% name = "John" %>
+
         <%- include('./dashpartials/nav.ejs') %>
     <div class="container my-4">
 
-        <div class="display-4 my-4">Welcome to your notes <%= name %>! </div>
+        <div class="display-6 my-4">Welcome to your notes <%= user %>! </div>
         <div class="row my-4">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                       <h5>Pinned notes</h5>
-                    </div>y
+                    </div>
                   </div>
             </div>
 <br />
@@ -25,15 +25,20 @@
                       </div>
                     <div class="card-body row text-white">
                       
-                        <div class="col-md-5 note p-2 m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
-                        <div class="col-md-5 note p- m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
-                        <div class="col-md-5 note p-2 m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
+                        <% if(notes.length > 0) { %>
+
+                            <% notes.forEach(note => { %>
+                                <div class="col-md-5 note p-2 m-2">
+                                    <div class="">
+                                       <p class="lead"><%= note.title %></p> 
+                                        <p class="small">created: <%= note.createdAt %></p>
+                                    </div>
+                                </div>
+                           <% }); %>
+                        
+                        <% } else { %>
+                            <div>Notes is empty!</div>
+                        <% } %>
                        
 
                     </div>
