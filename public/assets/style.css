@@ -1,4 +1,16 @@
 
+body{
+  background: #eee;
+}
+.note{
+  border: 0x solid #5a23c8;
+  border-radius: 5px;
+  background-color: #5a23c8;
+}
+.dash-navbar{
+  background-color: #5a23c8;
+
+}
 #headlink{
     color: rgb(54, 53, 53);
 }
@@ -73,9 +85,4 @@
   }
   .bd-mode-toggle {
     z-index: 1500;
-  }
-  .note{
-    border: 0x solid #5a23c8;
-    border-radius: 5px;
-    background-color: #5a23c8;
   }
