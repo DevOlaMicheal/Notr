@@ -35,17 +35,13 @@ app.get('/add', (req, res) => {
     })
 })
 
-app.get('/get-all', (req, res) =>  {
-    Note.find().then((result) => {
-        res.send(result)
-    }).catch((err) => {
-        console.log(err)
-    })
+app.get('/', (req, res) =>  {
+  res.redirect('/notes')
 })
 
-app.get('/single', (req, res) => {
-    Note.findById('64ad7455c49d0119babecf18').then((result) => {
-        res.send(result)
+app.get('/notes', (req, res) => {
+    Note.find().then((result) => {
+        res.render('/dashboard/dashboard', { notes: result })
     }).catch((err) => {
         console.log(err)
     })

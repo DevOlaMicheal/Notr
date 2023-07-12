@@ -25,15 +25,17 @@
                       </div>
                     <div class="card-body row text-white">
                       
-                        <div class="col-md-5 note p-2 m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
-                        <div class="col-md-5 note p- m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
-                        <div class="col-md-5 note p-2 m-2">
-                            <div class="lead">notes from service Church</div>
-                        </div>
+                        <% if(notes > 0) { %>
+
+                            <% notes.forEach(note => { %>
+                                <div class="col-md-5 note p-2 m-2">
+                                    <div class="lead"><%= name.title %></div>
+                                </div>
+                           <% }); %>
+                        
+                        <% } else { %>
+                            <div>Notes is empty!</div>
+                        <% } %>
                        
 
                     </div>
