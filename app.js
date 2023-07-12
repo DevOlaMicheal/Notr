@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv').config()
 const mongoose = require('mongoose')
+const noteRoutes = require('./Routes/noteRoutes')
 
 mongoose.connect(process.env.MONGO_URI).then((result) => {
     app.listen(process.env.PORT, () => console.log(`app running on port ${process.env.PORT}`))
@@ -22,10 +23,6 @@ app.get('/about', (req, res) => {
     res.render('about', { title: "about" })
 })
 
-app.get('/notes', (req, res) => {
-    Note.find().then((result) => {
-        res.render('dashboard/dashboard', { user: "John", title: 'All notes', notes: result })
-    }).catch((err) => {
-        console.log(err)
-    })
-})
+app.use(noteRoutes)
+
+

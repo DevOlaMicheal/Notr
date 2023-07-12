@@ -2,6 +2,9 @@
 body{
   background: #eee;
 }
+a.note-link{
+  text-decoration: none;
+}
 .note{
   border: 0x solid #5a23c8;
   border-radius: 5px;
