@@ -19,8 +19,14 @@ const getsingle_note = (req, res) => {
     })
 }
 
+const addnew_note = (req, res) => {
+    res.render('dashboard/addNew', { title: "new note"})
+}
+
 module.exports = {
     allnotes,
-    getsingle_note
+    getsingle_note,
+    addnew_note
+    
 }
 
