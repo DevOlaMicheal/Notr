@@ -6,4 +6,5 @@ router.get('/notes', allnotes)
 router.get('/notes/:id', getsingle_note)
 router.get('/new', addnew_note)
 router.post('/', post_note)
+router.get('/notes/:id', )
 module.exports = router
