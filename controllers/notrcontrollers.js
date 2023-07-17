@@ -22,11 +22,39 @@ const getsingle_note = (req, res) => {
 const addnew_note = (req, res) => {
     res.render('dashboard/addNew', { title: "new note"})
 }
+const post_note = (req, res) => {
+    const deets = {
+        author: "michael",
+        pin: true
+       
+    };
+
+    const newNote = {
+        ...req.body,
+        ...deets
+    }
+
+    const note = new Note(newNote)
+    note.save().then((result) => {
+        res.redirect('/')
+    }).catch((err) => {
+        console.log(err)
+    })
+
+    // const note = new Note(req.body)
+    // note.save().then((result) => {
+    //     res.redirect('/')
+    // }).catch((err) => {
+    //     console.log(err)
+    // })
+    
+}
 
 module.exports = {
     allnotes,
     getsingle_note,
-    addnew_note
+    addnew_note,
+    post_note
     
 }
 

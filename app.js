@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGO_URI).then((result) => {
 app.set('view engine', 'ejs')
 app.use(express.static("public"))
 app.use(express.static("node_modules"))
+app.use(express.urlencoded({ extended: true}));
 
 
 
