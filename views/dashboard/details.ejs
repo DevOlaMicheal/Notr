@@ -15,10 +15,10 @@
               <div class="my-2" style="display: flex;">
                 <a data-doc="<%= notes.id %>" class="delete btn btn-danger"> <i style="color: white;" class="fa fa-times"></i>
               </a> &nbsp; 
-                <a class="btn" style="background-color: none; border-color: #5a23c8;">pin</a>  &nbsp;
-                <a class="btn btn-warning">Edit</a> 
-                
 
+                <a class="pinBtn btn text-white" data-pin="<%= notes.id %>" style="background-color: #5a23c8; ">pin</a>  &nbsp;
+                <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
+                
               </div>
               <hr>
               <div class="note-body">
@@ -66,6 +66,21 @@
     .catch(err => console.log(err))
   })
 
+
+  // const pinBtn = document.querySelector('a.pin');
+  // const pinId = pinBtn.dataset.pin
+
+  // pinBtn.addEventListener('click', (e) => {
+  //   const endpoint = `/notes/${pinId}`;
+  //   fetch(endpoint, {
+  //     method:'PUT'
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     window.location.href = data.redirect
+  //    })
+  //   .catch(err => console.log(err))
+  // })
 
 </script>
 </body>

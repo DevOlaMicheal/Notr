@@ -24,6 +24,11 @@ app.get('/about', (req, res) => {
     res.render('about', { title: "about" })
 })
 
+
 app.use(noteRoutes)
+
+app.use((req, res) => {
+    res.redirect('/notes')
+})
 
 

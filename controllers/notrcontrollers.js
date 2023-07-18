@@ -57,12 +57,23 @@ const delete_note = (req, res) => {
     
 }
 
+const pin_note = (req, res) => {
+    const id = req.params.id
+
+    Note.findByIdAndUpdate(id, {pin: true})
+    .then((result) => {
+        res.json({redirect: '/notes'})
+    })
+    .catch((err) => console.log(err))
+}
+
 module.exports = {
     allnotes,
     getsingle_note,
     addnew_note,
     post_note,
-    delete_note
+    delete_note,
+    pin_note
     
 }
 
