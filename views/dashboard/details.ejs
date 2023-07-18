@@ -12,6 +12,11 @@
             <div class="col-md-8 ">
               <div class="display-6 mb-2 fw-normal"><%= notes.title %></div>
               <div class="lead">created: <%= notes.createdAt %></div>
+              <div class="my-2" style="display: flex;">
+                <a href="" class="btn btn-outline-danger">Delete</a> &nbsp; 
+                <a class="btn" style="background-color: none; border-color: #5a23c8;">Pin</a>  &nbsp;
+                <a class="btn btn-warning">Edit</a> 
+              </div>
               <hr>
               <div class="note-body">
                 <p class="lead"> <%= notes.body %> </p>
@@ -27,6 +32,7 @@
                     <div class="">
                        <p class="lead">Code Plateau class</p> 
                         <p class="small">created: <%= notes.createdAt %></p>
+                       
                     </div>
              
                 </div>
@@ -38,6 +44,6 @@
         </div>
 
 
-<!-- <%- include('./dashpartials/footer.ejs') %> -->
+<%- include('./dashpartials/footer.ejs') %>
 </body>
 </html>

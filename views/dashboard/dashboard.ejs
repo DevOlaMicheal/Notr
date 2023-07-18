@@ -22,7 +22,7 @@
 
                             <% notes.forEach(note => { %>
                                 
-                                <div class="col-md-5 note p-2 m-2">
+                                <div class="col-md-5 note p-2 m-2" id="note">
                                     <a href="/notes/<%= note.id %>" class="note-link text-white">
                                     <div class="">
                                        <p class="lead"><%= note.title %></p> 
@@ -71,6 +71,6 @@
     </div>
 
 
-<!-- <%- include('./dashpartials/footer.ejs') %> -->
+<%- include('./dashpartials/footer.ejs') %>
 </body>
 </html>
