@@ -16,9 +16,6 @@ const getsingle_note = (req, res) => {
     Note.findById(id)
     .then((result) => {
         res.render('dashboard/details', { title: result.title, notes: result })
-       
-
-        console.log(note)
     }).catch((err) => {
         console.log(err)
     })
@@ -50,10 +47,12 @@ const post_note = (req, res) => {
 
 const delete_note = (req, res) => {
     const id = req.params.id;
-    Note.findAndDelete(id).then((result) => {
-
-    }).catch((err) => {
+    Note.findByIdAndDelete(id)
+    .then((result) => {
+        res.json({redirect: '/notes'})
         
+    }).catch((err) => {
+        console.log(err)
     })
     
 }
@@ -62,7 +61,8 @@ module.exports = {
     allnotes,
     getsingle_note,
     addnew_note,
-    post_note
+    post_note,
+    delete_note
     
 }
 

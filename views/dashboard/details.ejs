@@ -13,9 +13,12 @@
               <div class="display-6 mb-2 fw-normal"><%= notes.title %></div>
               <div class="lead">created: <%= notes.createdAt %></div>
               <div class="my-2" style="display: flex;">
-                <a href="" class="btn btn-outline-danger">Delete</a> &nbsp; 
-                <a class="btn" style="background-color: none; border-color: #5a23c8;">Pin</a>  &nbsp;
+                <a data-doc="<%= notes.id %>" class="delete btn btn-danger"> <i style="color: white;" class="fa fa-times"></i>
+              </a> &nbsp; 
+                <a class="btn" style="background-color: none; border-color: #5a23c8;">pin</a>  &nbsp;
                 <a class="btn btn-warning">Edit</a> 
+                
+
               </div>
               <hr>
               <div class="note-body">
@@ -32,7 +35,6 @@
                     <div class="">
                        <p class="lead">Code Plateau class</p> 
                         <p class="small">created: <%= notes.createdAt %></p>
-                       
                     </div>
              
                 </div>
@@ -45,5 +47,26 @@
 
 
 <%- include('./dashpartials/footer.ejs') %>
+
+
+<script>
+
+  const delBtn = document.querySelector('a.delete');
+  const id = delBtn.dataset.doc
+
+  delBtn.addEventListener('click', (e) => {
+    const endpoint = `/notes/${id}`;
+    fetch(endpoint, {
+      method:'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = data.redirect
+     })
+    .catch(err => console.log(err))
+  })
+
+
+</script>
 </body>
 </html>

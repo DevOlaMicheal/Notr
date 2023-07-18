@@ -34,10 +34,15 @@
                            <% }); %>
                         
                         <% } else { %>
-                            <div>Notes is empty!</div>
+                            <div class="text-center text-dark fw-normal">
+                               <p class="lead">Notes is empty!</p> 
+                    <a class="btn" href="/new" style="background-color: none; border-color: #5a23c8; color: #5a23c8;">Start new note!</a>  &nbsp;
+
+                            
+                            </div>
+                            
                         <% } %>
                        
-
                     </div>
                   </div>
             </div>
@@ -46,11 +51,14 @@
                 <div class="card">
                     <div class="card-body">
                       <h5 class="fw-normal">Pinned notes</h5>
-                     <% notes.filter((pinned_note) => { %>
+                     <% const filpin = notes.filter((pinned_note) => { %>
                        <% return pinned_note.pin == true %>
                 
-                      <% }).map((pinned_note) => { %>
-                      <div class="col-row note p-2 m-2">
+                      <% }) %>
+                      <% if (filpin.length > 0) { %>
+                        <% filpin.map((pinned_note) => { %>
+
+                        <div class="col-row note p-2 m-2">
                         <a href="/notes/<%= pinned_note.id %>" class="note-link text-white">
                         <div class="">
                            <p class="lead"><%= pinned_note.title %></p> 
@@ -59,7 +67,9 @@
                     </a> 
                     </div>
                     <% }); %>
-                    <%  %>
+                    <% }else { %>
+                        <div class="fw-normal text-center">Notes you pinned will appear here, You have none yet!</div>
+                    <% } %>
                
                     </div>
                   </div>
