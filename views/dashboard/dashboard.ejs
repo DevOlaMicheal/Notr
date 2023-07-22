@@ -14,7 +14,10 @@
                 <div class="card container p-4">
                       <div class="card-title row">
                       <h5 class="fw-normal col-3">All notes</h5>
-                        <form action="" class="col-7"> <input type="text" class="form-control" placeholder="Search"> </form>
+                        <form action="/notes/search" method="POST" class="col-7 d-flex"> 
+                            <input type="text" class="form-control" placeholder="Search" value="query"> &nbsp;
+                            <button type="submit" class="btn btn-success">search</button>
+                         </form>
                     <div class="col-2"><button class="btn btn-outline-dark">New</button></div>  
                     </div>
                     <div class="card-body row text-white">
@@ -85,7 +88,7 @@
     </div>
 
 
-<%- include('./dashpartials/footer.ejs') %>
+<!-- <%- include('./dashpartials/footer.ejs') %> -->
 <script src="../../node_modules/bootstrap/js/"></script>
 </body>
 </html>

@@ -67,13 +67,27 @@ const pin_note = (req, res) => {
     .catch((err) => console.log(err))
 }
 
+const handle_search = async (req, res) => {
+    const query = req.body.query
+
+    try {
+        const search = Url.find({title: query, body: query})
+
+        res.send(search)
+    }catch(err) {
+        console.log(err)
+    }
+
+}
+
 module.exports = {
     allnotes,
     getsingle_note,
     addnew_note,
     post_note,
     delete_note,
-    pin_note
+    pin_note,
+    handle_search
     
 }
 

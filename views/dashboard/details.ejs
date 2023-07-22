@@ -15,9 +15,14 @@
               <div class="my-2" style="display: flex;">
                 <a data-doc="<%= notes.id %>" class="delete btn btn-danger"> <i style="color: white;" class="fa fa-times"></i>
               </a> &nbsp; 
+              <% if(!notes.pin) { %>
 
-                <a class="pinBtn btn text-white" data-pin="<%= notes.id %>" style="background-color: #5a23c8; ">pin</a>  &nbsp;
+                <a data-pin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">pin</a>  &nbsp;
                 <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
+                <% }else{ %>
+                    <a data-pin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
+                    <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
+               <% } %>
                 
               </div>
               <hr>
@@ -67,20 +72,22 @@
   })
 
 
-  // const pinBtn = document.querySelector('a.pin');
-  // const pinId = pinBtn.dataset.pin
+  const pinBtn = document.querySelector('a.pin');
+  
+  const pinId = pinBtn.dataset.pin
 
-  // pinBtn.addEventListener('click', (e) => {
-  //   const endpoint = `/notes/${pinId}`;
-  //   fetch(endpoint, {
-  //     method:'PUT'
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     window.location.href = data.redirect
-  //    })
-  //   .catch(err => console.log(err))
-  // })
+  pinBtn.addEventListener('click', (e) => {
+    const endpoint = `/notes/${pinId}`;
+    fetch(endpoint, {
+      method:'PATCH',
+      
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = data.redirect
+     })
+    .catch(err => console.log(err))
+  })
 
 </script>
 </body>
