@@ -67,11 +67,21 @@ const pin_note = (req, res) => {
     .catch((err) => console.log(err))
 }
 
+const unpin_note = (req, res) => {
+    const id = req.params.id
+
+    Note.findByIdAndUpdate(id, {pin: false})
+    .then((result) => {
+        res.json({redirect: '/notes'})
+    })
+    .catch((err) => console.log(err))
+}
+
 const handle_search = async (req, res) => {
     const query = req.body.query
 
     try {
-        const search = Url.find({title: query, body: query})
+        const search = await Note.find({title: query})
 
         res.send(search)
     }catch(err) {

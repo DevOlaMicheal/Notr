@@ -17,10 +17,10 @@
               </a> &nbsp; 
               <% if(!notes.pin) { %>
 
-                <a data-pin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">pin</a>  &nbsp;
+                <a data-pin="<%= notes.id %>" class="pin btn text-white" style="background-color: #5a23c8; ">pin</a>  &nbsp;
                 <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
                 <% }else{ %>
-                    <a data-pin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
+                    <a data-unpin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
                     <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
                <% } %>
                 
@@ -56,30 +56,29 @@
 
 <script>
 
+  // Delete
   const delBtn = document.querySelector('a.delete');
   const id = delBtn.dataset.doc
-
   delBtn.addEventListener('click', (e) => {
     const endpoint = `/notes/${id}`;
-    fetch(endpoint, {
-      method:'DELETE'
-    })
-    .then(response => response.json())
-    .then(data => {
-      window.location.href = data.redirect
-     })
-    .catch(err => console.log(err))
+    handleajaxreq(endpoint, 'DELETE')
   })
 
 
+  // Pin Note
   const pinBtn = document.querySelector('a.pin');
-  
-  const pinId = pinBtn.dataset.pin
-
+  const pinId = pinBtn.dataset.unpin
   pinBtn.addEventListener('click', (e) => {
     const endpoint = `/notes/${pinId}`;
+    handleajaxreq(endpoint, 'PATCH')
+  })
+
+  // unpin
+
+
+  const handleajaxreq = (endpoint, method) => {
     fetch(endpoint, {
-      method:'PATCH',
+      method: method,
       
     })
     .then(response => response.json())
@@ -87,7 +86,7 @@
       window.location.href = data.redirect
      })
     .catch(err => console.log(err))
-  })
+  } 
 
 </script>
 </body>

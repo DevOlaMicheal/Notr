@@ -8,6 +8,6 @@ router.get('/new', addnew_note)
 router.post('/', post_note)
 router.delete('/notes/:id', delete_note)
 router.patch('/notes/:id', pin_note)
-router.get('/notes/search', handle_search)
+router.post('/notes/search', handle_search)
 
 module.exports = router
