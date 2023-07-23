@@ -6,7 +6,11 @@
         <%- include('./dashpartials/nav.ejs') %>
         <div class="container">
             <div class="mt-5">
+              <% if (type === 'post') { %>
                 <form method="POST" action="/">
+                  <% }else{ %>
+                <form method="POST" action="/notes/update/<%= result.id %>">
+                  <% } %>
                     <div class="mb-3">
                       <label for="title" class="form-label">Title </label>
                       <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp" value="<%= result.title %>" required>

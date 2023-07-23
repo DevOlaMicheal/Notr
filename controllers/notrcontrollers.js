@@ -23,7 +23,7 @@ const getsingle_note = (req, res) => {
 
 const addnew_note = (req, res) => {
     
-    res.render('dashboard/addNew', { title: "new note", result: {title: '', body: ''}})
+    res.render('dashboard/addNew', { title: "new note", result: {title: '', body: '', id: ''}, type: 'post'})
 }
 const post_note = (req, res) => {
     const deets = {
@@ -84,11 +84,23 @@ const edit_note = async (req, res) => {
 
     try {
         const re = await Note.findById(id)
-        res.render('dashboard/addNew', {result: re, title: 'Edit Note'})
+        res.render('dashboard/addNew', {result: re, title: 'Edit Note', type: 'update'})
     }catch(err) {
         res.status(404).send(err)
     }
 
+}
+
+const update_note = async (req, res) => {
+
+    const id = req.params.id
+
+    try {
+        await Note.findByIdAndUpdate(id, {title: req.body.title, body: req.body.body})
+        res.redirect('/')
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const handle_search = async (req, res) => {
@@ -113,6 +125,7 @@ module.exports = {
     pin_note,
     handle_search,
     unpin_note,
-    edit_note
+    edit_note,
+    update_note
 }
 
