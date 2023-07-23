@@ -9,13 +9,13 @@
                 <form method="POST" action="/">
                     <div class="mb-3">
                       <label for="title" class="form-label">Title </label>
-                      <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp" required>
+                      <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp" value="<%= result.title %>" required>
                    
                     </div>
                     <div class="mb-3 form-outline">
                         <label class="form-label" for="textAreaExample2">Note</label>
 
-                        <textarea class="form-control" name="body" id="textAreaExample2" rows="8" required></textarea>
+                        <textarea class="form-control" name="body" id="textAreaExample2" rows="8" required><%= result.body %></textarea>
                       </div>
                    
                     <button type="submit" class="btn btn-success">Submit</button>

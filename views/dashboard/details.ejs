@@ -17,12 +17,11 @@
               </a> &nbsp; 
               <% if(!notes.pin) { %>
 
-                <a data-pin="<%= notes.id %>" class="pin btn text-white" style="background-color: #5a23c8; ">pin</a>  &nbsp;
-                <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
+                <a data-pin="<%= notes.id %>" class="pin btn text-white" style="background-color: #5a23c8;">pin</a>  &nbsp;
                 <% }else{ %>
-                    <a data-unpin="<%= notes.id %>" class="pin btn text-white" data-pin="" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
-                    <button class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </button>
+                    <a data-unpin="<%= notes.id %>" class="unpin btn text-white" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
                <% } %>
+               <a href="/notes/edit/<%= notes.id %>" class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </a>
                 
               </div>
               <hr>
@@ -55,6 +54,18 @@
 
 
 <script>
+  const handleajaxreq = (endpoint, method) => {
+    fetch(endpoint, {
+      method: method,
+      
+    })
+    .then(response => response.json())
+    .then(data => {
+      // window.location.href = data.redirect
+      console.log(data)
+     })
+    .catch(err => console.log(err))
+  } 
 
   // Delete
   const delBtn = document.querySelector('a.delete');
@@ -67,26 +78,20 @@
 
   // Pin Note
   const pinBtn = document.querySelector('a.pin');
-  const pinId = pinBtn.dataset.unpin
+  const pinId = pinBtn.dataset.pin
   pinBtn.addEventListener('click', (e) => {
-    const endpoint = `/notes/${pinId}`;
+    const endpoint = `/notes/pin/${pinId}`;
     handleajaxreq(endpoint, 'PATCH')
   })
 
   // unpin
+  const unpinBtn = document.querySelector('a.unpin');
+  const unpinId = unpinBtn.dataset.unpin
+  unpinBtn.addEventListener('click', (e) => {
+    const endpoint = `/notes/unpin/${unpinId}`;
+    handleajaxreq(endpoint, 'PATCH')
+  })
 
-
-  const handleajaxreq = (endpoint, method) => {
-    fetch(endpoint, {
-      method: method,
-      
-    })
-    .then(response => response.json())
-    .then(data => {
-      window.location.href = data.redirect
-     })
-    .catch(err => console.log(err))
-  } 
 
 </script>
 </body>
