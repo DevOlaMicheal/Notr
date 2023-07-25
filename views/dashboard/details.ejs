@@ -14,15 +14,21 @@
               <div class="lead">created: <%= notes.createdAt %></div>
               <div class="my-2" style="display: flex;">
                 <a data-doc="<%= notes.id %>" class="delete btn btn-danger"> <i style="color: white;" class="fa fa-times"></i>
-              </a> &nbsp; 
+              </a> &nbsp;
+               
               <% if(!notes.pin) { %>
 
-                <a data-pin="<%= notes.id %>" class="pin btn text-white" style="background-color: #5a23c8;">pin</a>  &nbsp;
-                <% }else{ %>
-                    <a data-unpin="<%= notes.id %>" class="unpin btn text-white" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
-               <% } %>
-               <a href="/notes/edit/<%= notes.id %>" class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </a>
+               <a data-pin="<%= notes.id %>" class="pin btn text-white" style="background-color: #5a23c8;">pin</a>   &nbsp;
                 
+                
+                <% } %>
+               <% if(notes.pin) { %>
+
+                <a data-unpin="<%= notes.id %>" class="unpin btn text-white" style="background-color: #5a23c8; ">Unpin</a>  &nbsp;
+
+                <% } %>
+              <a href="/notes/edit/<%= notes.id %>" class="btn btn-sm btn-secondary">  <i style="color: white;" class="fa fa-edit"></i> </a>
+
               </div>
               <hr>
               <div class="note-body">
@@ -61,8 +67,8 @@
     })
     .then(response => response.json())
     .then(data => {
-      // window.location.href = data.redirect
-      console.log(data)
+      window.location.href = data.redirect
+      // console.log(data)
      })
     .catch(err => console.log(err))
   } 
@@ -82,6 +88,8 @@
   pinBtn.addEventListener('click', (e) => {
     const endpoint = `/notes/pin/${pinId}`;
     handleajaxreq(endpoint, 'PATCH')
+
+    console.log('event listener')
   })
 
   // unpin
@@ -90,6 +98,8 @@
   unpinBtn.addEventListener('click', (e) => {
     const endpoint = `/notes/unpin/${unpinId}`;
     handleajaxreq(endpoint, 'PATCH')
+    // console.log('event listener')
+
   })
 
 
