@@ -1,4 +1,4 @@
-const Note = require('../models/noteModel')
+const {Note, User} = require('../models/noteModel')
 
 const allnotes = (req, res) => {
     Note.find().sort({ createdAt: -1})
@@ -78,7 +78,6 @@ const unpin_note = (req, res) => {
     .catch((err) => console.log(err))
 }
 
-
 const edit_note = async (req, res) => {
     const id = req.params.id
 
@@ -116,6 +115,31 @@ const handle_search = async (req, res) => {
 
 }
 
+// Auth controllers
+
+const getLoginPage = (req, res) => {
+    res.send("hi login page")
+}
+
+const getSignUpPage = (req, res) => {
+
+}
+
+const postLogin = (req, res) => {
+    res.send("hi login page")
+}
+
+const postSignup = async (req, res) => {
+    const { fname, lname, email, password } = req.body
+    try{
+        const result = await User.create({fname, lname, email, password})
+        res.status(201).json(result)
+    }catch(error){
+        res.status(400).send(error)
+    }
+}
+
+
 module.exports = {
     allnotes,
     getsingle_note,
@@ -126,6 +150,10 @@ module.exports = {
     handle_search,
     unpin_note,
     edit_note,
-    update_note
+    update_note,
+    getLoginPage,
+    getSignUpPage,
+    postLogin,
+    postSignup
 }
 
