@@ -135,7 +135,7 @@ const postSignup = async (req, res) => {
         const result = await User.create({fname, lname, email, password})
         res.status(201).json(result)
     }catch(error){
-        res.status(400).send(error)
+        res.status(400).send(error.message)
     }
 }
 

@@ -32,15 +32,15 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'email is required'],
         unique: true,
         lowercase: true
 
     },
     password: {
         type: String,
-        required: true,
-        minlength: 6
+        required: [true,"password is required"],
+        minlength: [6, "password is too short, try six characters or more"]
     }
 
 
