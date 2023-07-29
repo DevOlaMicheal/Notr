@@ -26,7 +26,7 @@ router.delete("/notes/:id", delete_note);
 router.patch("/notes/pin/:id", pin_note);
 router.patch("/notes/unpin/:id", unpin_note);
 router.get("/notes/edit/:id", edit_note);
-router.post("/notes/search", handle_search);
+router.get("/search", handle_search);
 
 // auth Routes
 router.get('/login', getLoginPage);

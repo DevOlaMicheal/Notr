@@ -1,4 +1,8 @@
 
+p::first-letter {
+  text-transform: uppercase;
+}
+
 body{
   background: #eee;
 }

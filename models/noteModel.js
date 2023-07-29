@@ -4,15 +4,18 @@ const Schema = mongoose.Schema;
 const notesSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     author: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     body: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true
     },
     pin: {
         type: Boolean,

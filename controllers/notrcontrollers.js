@@ -4,7 +4,7 @@ const allnotes = (req, res) => {
     Note.find().sort({ createdAt: -1})
     .then((result) => {
         
-        res.render('dashboard/dashboard', { user: "John", title: 'All notes', notes: result })
+        res.render('dashboard/dashboard', { user: "John", title: 'All notes', notes: result, isSearch: false })
     }).catch((err) => {
         console.log(err)
     })
@@ -103,14 +103,20 @@ const update_note = async (req, res) => {
 }
 
 const handle_search = async (req, res) => {
-    const query = req.body.query
+    const searchchQuery = req.query.term
 
     try {
-        const search = await Note.find({title: query})
+        const search = await Note.find()
 
-        res.send(search)
-    }catch(err) {
-        console.log(err)
+        const searchresult = search.filter((sres) => {
+             return sres.body.includes(searchchQuery) || sres.title.includes(searchchQuery)
+        })
+        
+        
+        res.render('dashboard/dashboard', {notes: searchresult, isSearch: true, title: "Search result", user: "Eniola"})
+        
+    }catch(error) {
+        console.log(error.message)
     }
 
 }
@@ -135,7 +141,7 @@ const postSignup = async (req, res) => {
         const result = await User.create({fname, lname, email, password})
         res.status(201).json(result)
     }catch(error){
-        res.status(400).send(error.message)
+        res.status(400).send(error)
     }
 }
 

@@ -10,13 +10,13 @@
         <div class="display-6 my-4">Welcome to your notes <%= user %>! </div>
         <hr />
         <div class="row my-4">
-            <div class="col-md-8 mb-4">
-                <div class="card container p-4">
+            <div class=<%= isSearch ? 'col-md-12' : 'col-md-8' %> >
+                <div class="card container p-4 mb-4">
                       <div class="card-title row">
                       <h5 class="fw-normal col-3">All notes</h5>
-                        <form  method="POST" action="/notes/search" class="col-7 d-flex"> 
-                            <input type="text" class="form-control" placeholder="Search" name="query"> &nbsp;
-                            <button class="btn btn-success">search</button>
+                        <form  method="GET" action="/search" class="col-7 d-flex"> 
+                            <input type="text" class="form-control" placeholder="Search...." name="term"> &nbsp;
+                            <button type="submit" class="btn btn-success">search</button>
                          </form>
                     <div class="col-2"><button class="btn btn-outline-dark">New</button></div>  
                     </div>
@@ -26,23 +26,22 @@
 
                             <% notes.forEach(note => { %>
                                 
-                                <div class="col-md-5 note p-2 m-2" id="note">
+                                <div class="col-md-12 col-lg-5 note p-2 m-2" id="note">
                                     <a href="/notes/<%= note.id %>" class="note-link text-white">
                                     <div class="">
-                                       <p class="lead"><%= note.title %></p> 
+                                       <p class="lead" style="text-transform: uppercase;"><%= note.title %></p> 
                                         <p class="small">created: <%= note.createdAt %></p>
                                     </div>
                                 </a> 
                                 <a>
-                        
-</a>
+                                </a>
                                 </div>
                            
                            <% }); %>
                         
                         <% } else { %>
                             <div class="text-center text-dark fw-normal">
-                               <p class="lead">Notes is empty!</p> 
+                                 <p class="lead"> <%= !isSearch ? 'Notes is empty!' : 'Sorry! note not found' %> </p> 
                     <a class="btn" href="/new" style="background-color: none; border-color: #5a23c8; color: #5a23c8;">Start new note!</a>  &nbsp;
 
                             
@@ -54,11 +53,12 @@
                   </div>
             </div>
 
+            <% if(!isSearch) { %>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                       <h5 class="fw-normal">Pinned notes</h5>
-                     <% const filpin = notes.filter((pinned_note) => { %>
+                        <% const filpin = notes.filter((pinned_note) => { %>
                        <% return pinned_note.pin == true %>
                 
                       <% }) %>
@@ -66,21 +66,23 @@
                         <% filpin.map((pinned_note) => { %>
 
                         <div class="col-row note p-2 m-2">
-                        <a href="/notes/<%= pinned_note.id %>" class="note-link text-white">
-                        <div class="">
-                           <p class="lead"><%= pinned_note.title %></p> 
-                            <p class="small">created: <%= pinned_note.createdAt %></p>
+                            <a href="/notes/<%= pinned_note.id %>" class="note-link text-white">
+                            <div class="">
+                            <p class="lead"><%= pinned_note.title %></p> 
+                                <p class="small">created: <%= pinned_note.createdAt %></p>
+                            </div>
+                        </a> 
                         </div>
-                    </a> 
-                    </div>
-                    <% }); %>
-                    <% }else { %>
-                        <div class="fw-normal text-center">Notes you pinned will appear here, You have none yet!</div>
-                    <% } %>
+                        <% }); %>
+                        <% }else { %>
+                            <div class="fw-normal text-center">Notes you pinned will appear here, You have none yet!</div>
+                        <% } %>
                
                     </div>
                   </div>
             </div>
+            <% } %>
+        
 <br />
         
         </div>
