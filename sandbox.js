@@ -1,16 +1,18 @@
-// const err = {
-//     error: "user val failed",
-//     error2: "email wrong",
-//     password: "password worng"
+const err = {
+    error: "user val failed",
+    error2: "email wrong",
+    password: "password worng"
     
-// }
+}
 
-// let errors = { error: "", error1: "", error2: "" }
+let errors = { error: "", error1: "", error2: "" }
 
 // Object.values(err).forEach(errmsg => {
 //     errors = errmsg 
 //     console.log(errors)
 // })
+
+console.log(Object.values(err))
 
 // const name = [
 //         {
@@ -35,6 +37,6 @@
 
 // fil.length > 0 ? fil.map(res => {console.log(res)}) : console.log('not')
 
-let john = '1'
+// let john = '1'
 
-john.length == 0 ? console.log("accurate") : console.log("low")
+// john.length == 0 ? console.log("accurate") : console.log("low")

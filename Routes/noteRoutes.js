@@ -10,11 +10,11 @@ const {
   handle_search,
   edit_note,
   update_note,
-  getLoginPage,
-  getSignUpPage,
-  postLogin,
-  postSignup,
+  
 } = require("../controllers/notrcontrollers");
+
+const {getLoginPage, getSignUpPage, postLogin, postSignup} = require('../controllers/authControllers')
+
 const router = express.Router();
 
 router.get("/notes", allnotes);
