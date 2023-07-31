@@ -1,8 +1,10 @@
 const err = {
     error: "user val failed",
     error2: "email wrong",
-    password: "password worng"
-    
+    password: "password worng",
+    things: {
+        name: "john"
+    }
 }
 
 let errors = { error: "", error1: "", error2: "" }
@@ -12,7 +14,12 @@ let errors = { error: "", error1: "", error2: "" }
 //     console.log(errors)
 // })
 
-console.log(Object.values(err))
+// console.log(Object.values(err))
+
+err['] = "sam"
+
+
+console.log(err)
 
 // const name = [
 //         {
