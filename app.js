@@ -26,10 +26,12 @@ app.get('/about', (req, res) => {
 })
 
 
-app.get('/sign', (req, res) => {
-    res.render('signup', { title: "about" })
+app.get('/signup', (req, res) => {
+    res.render('signup', { title: "SignUp" })
 })
-
+app.get('/signin', (req, res) => {
+    res.render('login', { title: "Sign In" })
+})
 app.use(noteRoutes)
 
 app.use((req, res) => {

@@ -43,9 +43,10 @@ const postSignup = async (req, res) => {
   const { fname, lname, email, password } = req.body;
   try {
     const result = await User.create({ fname, lname, email, password });
-    res.status(201).json({user: result});
     const signedToken = createToken(result._id)
     res.cookie("jwt", signedToken, { httpOnly: true, maxAge: maxAge * 1000})
+    res.status(201).json({user: result});
+    
   } catch (error) {
     const errors = handleErrors(error)
     res.status(400).json({errors});
