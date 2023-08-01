@@ -29,15 +29,20 @@ const createToken = (id) => {
 
 
 // Auth controllers
-const getLoginPage = (req, res) => {
-  res.send("hi login page");
+
+  
+const postLogin = async (req, res) => {
+  const {email, password} = req.body
+
+  try{
+    const user = await User.login(email, password)
+    res.status(200).json({user})
+  }catch (error){
+    res.status(400).json({})
+  }
 };
 
-const getSignUpPage = (req, res) => {};
 
-const postLogin = (req, res) => {
-  res.send("hi login page");
-};
 
 const postSignup = async (req, res) => {
   const { fname, lname, email, password } = req.body;
@@ -53,4 +58,4 @@ const postSignup = async (req, res) => {
   }
 };
 
-module.exports = { getLoginPage, getSignUpPage, postLogin, postSignup };
+module.exports = { postLogin, postSignup };

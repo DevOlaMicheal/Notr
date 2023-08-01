@@ -6,7 +6,7 @@
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card p-5 px-5">
       <h3 class="text-center mb-1">Login to your Account</h3>
-      <p class="small mb-3">Use password and Email you signed up qith</p>
+      <p class="small mb-2">Use password and Email you signed up qith</p>
       <form>
       
         <div class="form-group">
@@ -39,7 +39,7 @@
       const email = form.email.value
       const password = form.password.value
 
-      // console.log({fname, lname, email, password})
+      // console.log({ email, password})
       // sets errors to empty onsubmit
     
       emailError.textContent = ""
@@ -49,15 +49,14 @@
       try {
         const resp = await fetch('/api/signin', {
           method: 'POST',
-          body: JSON.stringify({fname, lname, email, password}),
+          body: JSON.stringify({ email, password}),
           headers: {"Content-Type": "application/json"}
         })
 
         const data = await resp.json()
 
         if(data.errors) {
-          fnameError.textContent = data.errors.fname
-          lnameError.textContent = data.errors.lname
+        
           emailError.textContent = data.errors.email
           passwordError.textContent = data.errors.password
 
@@ -65,10 +64,11 @@
         }
         if(data.user) {
           // location.assign('/')
+          console.log(data.user)
         }
 
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       
       

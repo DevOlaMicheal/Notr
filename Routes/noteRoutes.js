@@ -29,7 +29,7 @@ router.get("/notes/edit/:id", edit_note);
 router.get("/search", handle_search);
 
 // auth Routes
-router.post('/signup', getSignUpPage);
+router.post('/api/signin', postLogin);
 router.post('/api/signup', postSignup)
 
 module.exports = router;
