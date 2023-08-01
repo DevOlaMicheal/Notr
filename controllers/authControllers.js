@@ -1,5 +1,5 @@
-const { User } = require("../models/noteModel");
-
+const User  = require("../models/authModel");
+const jwt = require('jsonwebtoken')
 
 const handleErrors = (error) => {
     console.log(error.message, error.code)
@@ -20,6 +20,14 @@ const handleErrors = (error) => {
 
     return(errors)
 }
+
+// create jwt signature token
+const maxAge = 3 * 24 * 60 * 60
+const createToken = (id) => {
+  return jwt.sign({id}, process.env.JWTSECRET, { expiresIn: maxAge })
+}
+
+
 // Auth controllers
 const getLoginPage = (req, res) => {
   res.send("hi login page");
@@ -35,10 +43,12 @@ const postSignup = async (req, res) => {
   const { fname, lname, email, password } = req.body;
   try {
     const result = await User.create({ fname, lname, email, password });
-    res.status(201).json(result);
+    res.status(201).json({user: result});
+    const signedToken = createToken(result._id)
+    res.cookie("jwt", signedToken, { httpOnly: true, maxAge: maxAge * 1000})
   } catch (error) {
     const errors = handleErrors(error)
-    res.status(400).json(errors);
+    res.status(400).json({errors});
   }
 };
 

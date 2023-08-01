@@ -1,4 +1,4 @@
-const {Note} = require('../models/noteModel')
+const Note = require('../models/noteModel')
 
 const allnotes = (req, res) => {
     Note.find().sort({ createdAt: -1})
