@@ -6,6 +6,13 @@ const handleErrors = (error) => {
 
     const errors = {fname: "", lname: "", email: "", password: ""}
 
+    if(error.message === 'invalid email') {
+      errors.email = 'Email not registered to an account'
+    }
+    if(error.message === 'invalid password') {
+      errors.password = 'Incorrect Password'
+    }
+
     if(error.code === 11000) {
         errors.email = "Email already registered to an account"
         return errors;
@@ -38,7 +45,9 @@ const postLogin = async (req, res) => {
     const user = await User.login(email, password)
     res.status(200).json({user})
   }catch (error){
-    res.status(400).json({})
+    const errors = handleErrors(error)
+    console.log(errors)
+    res.status(400).json({errors});
   }
 };
 
