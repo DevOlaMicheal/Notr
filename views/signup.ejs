@@ -4,9 +4,10 @@
 <body>
 
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card p-5 px-5">
-      <h3 class="text-center mb-1">Create an Account</h3>
-      <p class="small mb-3">By clicking submit you agree to all our terms of service</p>
+    <div class="card p-5 px-5" style="width: 30rem;">
+
+      <h3 class="mb-3">Create a new <span style="color: #5a23c8;">Account</span></h3>
+      
       <form>
         <div class="form-group">
           <label for="username">first name</label>
@@ -30,7 +31,10 @@
           <input type="password" class="form-control" id="password" name="password">
           <p class="text-small mt-1 passwordError text-danger"></p>
         </div>
-        <button type="" class="btn btn-primary btn-block">submit</button>
+      <p class="small mb-3">Already have an account? <a href="/signin">Signin</a> </p>
+
+               <button type="" class="btn btn-primary btn-block btn-lg" style="background-color: #5a23c8; outline: none; border: none;">Signup</button>
+
       </form>
     </div>
   </div>

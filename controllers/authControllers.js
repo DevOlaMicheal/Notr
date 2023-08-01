@@ -43,7 +43,10 @@ const postLogin = async (req, res) => {
 
   try{
     const user = await User.login(email, password)
-    res.status(200).json({user})
+    const signedToken = createToken(user._id)
+    res.cookie("jwt", signedToken, { httpOnly: true, maxAge: maxAge * 1000})
+    res.status(201).json({user: user._id});
+ 
   }catch (error){
     const errors = handleErrors(error)
     console.log(errors)

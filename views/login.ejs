@@ -5,9 +5,9 @@
 
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card p-5 px-5">
-      <h3 class="text-center mb-1">Login to your Account</h3>
-      <p class="small mb-2">Use password and Email you signed up qith</p>
-      <form>
+      <div class="display-6 mb-2">Welcome!</div>
+      <h3 class="text-center mb-3">Login to your <span style="color: #5a23c8;">Account</span></h3>
+      <form class="">
       
         <div class="form-group">
           <label for="username">Email</label>
@@ -19,7 +19,9 @@
           <input type="password" class="form-control" id="password" name="password">
           <p class="text-small mt-1 passwordError text-danger"></p>
         </div>
-        <button type="" class="btn btn-primary btn-block">Login</button>
+      <p class="small mb-3">Dont have an account? <a href="/signup">Signup</a> </p>
+
+        <button type="" class="btn btn-primary btn-block btn-md" style="background-color: #5a23c8; outline: none; border: none;">Login</button>
       </form>
     </div>
   </div>
