@@ -6,7 +6,8 @@ const noteRoutes = require('./Routes/noteRoutes')
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const User = require('./models/authModel')
-mongoose.connect(process.env.MONGO_URI).then((result) => {
+
+mongoose.connect(process.env.MONGO_ATLAS).then((result) => {
     app.listen(process.env.PORT, () => console.log(`app running on port ${process.env.PORT}`))
 }).catch(err => console.log(err))
 

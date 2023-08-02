@@ -47,7 +47,6 @@ const post_note = async (req, res) => {
         res.status(400).json(err)
     }
     
-    
 }
 
 const delete_note = (req, res) => {

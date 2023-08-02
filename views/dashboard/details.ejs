@@ -41,7 +41,7 @@
                   <div class="row text-white note p-2 m-2">
                     
                     <div class="">
-                       <p class="lead">Code Plateau class</p> 
+                       <p class="lead"><%= notes.title %></p> 
                         <p class="small">created: <%= notes.createdAt %></p>
                     </div>
              
@@ -104,10 +104,12 @@
   // Pin Note
   const pinBtn = document.querySelector('a.pin');
   const pinId = pinBtn.dataset.pin
+  
+
   pinBtn.addEventListener('click', (e) => {
     const endpoint = `/notes/pin/${pinId}`;
     handleajaxreq(endpoint, 'PATCH')
-
+    pintbtn.innerHtml = "unpin"
     console.log('event listener')
   })
 
