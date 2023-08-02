@@ -16,13 +16,18 @@ const {
 const {getLoginPage, getSignUpPage, postLogin, postSignup} = require('../controllers/authControllers')
 
 const router = express.Router();
+const jwt = require('jsonwebtoken')
+
+const seeForUser = (req, res,next) => {
+
+}
 
 router.get("/notes", allnotes);
 router.get("/notes/:id", getsingle_note);
 router.get("/new", addnew_note);
 router.get("/notes/edit/:id", edit_note);
 router.get("/search", handle_search);
-router.post("/notes/new", post_note);
+router.post("/", post_note);
 router.post("/notes/update/:id", update_note);
 router.delete("/notes/:id", delete_note);
 router.patch("/notes/pin/:id", pin_note);

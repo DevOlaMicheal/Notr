@@ -17,9 +17,11 @@ const notesSchema = new Schema({
         required: true,
         lowercase: true
     },
+   
     pin: {
         type: Boolean,
-        required: true
+        required: true,
+    
     },
 }, { timestamps: true })
 

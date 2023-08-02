@@ -1,13 +1,21 @@
 const Note = require('../models/noteModel')
+const jwt = require('jsonwebtoken')
 
-const allnotes = (req, res) => {
-    Note.find().sort({ createdAt: -1})
-    .then((result) => {
-        
-        res.render('dashboard/dashboard', { title: 'All notes', notes: result, isSearch: false })
-    }).catch((err) => {
-        console.log(err)
-    })
+const allnotes = async(req, res) => {
+    const token = req.cookies.jwt
+    const decode = jwt.decode(token)
+    const user = decode.id
+    try{
+        const notes = await Note.find({author: user}).sort({ createdAt: -1})
+        console.log(notes)
+        res.render('dashboard/dashboard', { title: 'All notes', notes, isSearch: false })
+
+    }catch(err){
+        res.status(400).json(err.message)
+    }
+   
+    
+    
  
 }
 
@@ -25,24 +33,20 @@ const addnew_note = (req, res) => {
     
     res.render('dashboard/addNew', { title: "new note", result: {title: '', body: '', id: ''}, type: 'post'})
 }
-const post_note = (req, res) => {
-    const deets = {
-        author: "michael",
-        pin: false
-       
-    };
+const post_note = async (req, res) => {
 
-    const newNote = {
-        ...req.body,
-        ...deets
-    }
-
-    const note = new Note(newNote)
-    note.save().then((result) => {
+    const { title, body } = req.body
+    const token = req.cookies.jwt
+    const decode = jwt.decode(token)
+    const author = decode.id
+    try{
+        const note = await Note.create({title, body, author, pin: false})
+        console.log(note)
         res.redirect('/')
-    }).catch((err) => {
-        console.log(err)
-    })
+    }catch(err){
+        res.status(400).json(err)
+    }
+    
     
 }
 
@@ -104,15 +108,13 @@ const update_note = async (req, res) => {
 
 const handle_search = async (req, res) => {
     const searchchQuery = req.query.term
-
+    const token = req.cookies.jwt
+    const decode = jwt.decode(token)
     try {
-        const search = await Note.find()
-
+        const search = await Note.find({author: decode.id})
         const searchresult = search.filter((sres) => {
              return sres.body.includes(searchchQuery) || sres.title.includes(searchchQuery)
         })
-        
-        
         res.render('dashboard/dashboard', {notes: searchresult, isSearch: true, title: "Search result"})
         
     }catch(error) {
