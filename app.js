@@ -28,6 +28,10 @@ app.get('/signin', (req, res) => {
     res.render('login', { title: "Sign In" })
 })
 
+app.get('/logout', (req,res) => {
+    res.cookie("jwt", "", {maxAge: 1})
+    res.redirect('/signin')
+})
 // middleware to verify jwt token in cookie
 
 app.get('*', (req, res, next) => { 

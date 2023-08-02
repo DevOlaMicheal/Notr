@@ -7,7 +7,7 @@
         <%- include('./dashpartials/nav.ejs') %>
     <div class="container my-4">
 
-        <div class="display-6 my-4">Welcome to your notes <%= user %>! </div>
+        <div class="display-6 my-4">Welcome to your notes <%= user.fname %>! </div>
         <hr />
         <div class="row my-4">
             <div class=<%= isSearch ? 'col-md-12' : 'col-md-8' %> >
@@ -91,6 +91,5 @@
 
 
 <!-- <%- include('./dashpartials/footer.ejs') %> -->
-<script src="../../node_modules/bootstrap/js/"></script>
 </body>
 </html>

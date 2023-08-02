@@ -4,7 +4,7 @@ const allnotes = (req, res) => {
     Note.find().sort({ createdAt: -1})
     .then((result) => {
         
-        res.render('dashboard/dashboard', { user: "John", title: 'All notes', notes: result, isSearch: false })
+        res.render('dashboard/dashboard', { title: 'All notes', notes: result, isSearch: false })
     }).catch((err) => {
         console.log(err)
     })
@@ -113,7 +113,7 @@ const handle_search = async (req, res) => {
         })
         
         
-        res.render('dashboard/dashboard', {notes: searchresult, isSearch: true, title: "Search result", user: "Eniola"})
+        res.render('dashboard/dashboard', {notes: searchresult, isSearch: true, title: "Search result"})
         
     }catch(error) {
         console.log(error.message)
